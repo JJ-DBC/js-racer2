@@ -2,7 +2,7 @@ class CreateGames < ActiveRecord::Migration
   def change
     create_table :games do |t|
       t.decimal :duration
-      t.integer :winner_id
+      t.string :winner
 
       t.timestamps
     end

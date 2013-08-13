@@ -4,8 +4,6 @@ $(document).ready(function() {
   // when we try to bind to them
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   setTimeout(function(){
-    var player1 = $('#player1').text();
-    var player2 = $('#player2').text();
     var startTime = new Date();
     var endTime;
     $('#GO').css({'display':'block'});
@@ -17,10 +15,12 @@ $(document).ready(function() {
          current_pos.next().addClass('active');
          if(current_pos.index() == last_pos){
             endTime = new Date();
-            var totalTime = endTime.getTime() - startTime.getTime();
+            var totalTime = (endTime.getTime() - startTime.getTime())/1000.0;
             var results = {winner:totalTime,winner: "player1"};
             $(document).unbind();
-            $.post('/results',results);
+            $.post('/results',{time: totalTime,winner: "player1"},function(response){
+              $('body').html(response)
+            });
 
          }
          current_pos.removeClass('active');

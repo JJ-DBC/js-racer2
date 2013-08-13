@@ -5,5 +5,10 @@
     <input type="text" name="player2" placeholder="Player2 Name">
     <input type="submit" value="Race!">
   </form>
-
+  <h3>Top Times!</h3>
+  <ol>
+  <% @top_times.each do |game| %>
+    <li><%= game.winner %> - <%= game.duration %> seconds</li>
+  <% end %>
+  </ol>
 </div>
